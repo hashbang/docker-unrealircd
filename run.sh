@@ -8,4 +8,4 @@
 
 #sed -i "s/TOKEN/$TOKEN/" /opt/unrealircd/.conf
 
-/opt/unrealircd/unreal
+/opt/unrealircd/src/ircd
