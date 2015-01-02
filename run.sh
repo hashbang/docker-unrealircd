@@ -9,3 +9,4 @@
 #sed -i "s/TOKEN/$TOKEN/" /opt/unrealircd/.conf
 
 /opt/unrealircd/src/ircd
+tail -f /var/log/ircd.log
