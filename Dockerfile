@@ -2,7 +2,9 @@ FROM debian:wheezy
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential curl
+    apt-get install -y build-essential curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && \
     mv Unreal3.2.10.4 /opt/unrealircd && \
