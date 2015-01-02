@@ -8,6 +8,7 @@ RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && 
     mv Unreal3.2.10.4 /opt/unrealircd && \
     cd /opt/unrealircd && \
     ./configure \
+      --enable-ssl=/etc/ssl/localcerts/ \
       --with-showlistmodes \
       --with-listen=5 \
       --with-dpath=/opt/unrealircd \
@@ -19,8 +20,9 @@ RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && 
       --with-fd-setsize=1024 \
       --enable-dynamic-linking && \
     make
-      # To enable SSL:
-      #--enable-ssl=/opt/unrealircd/certs/
+
+# Get these certs here in advance using deployment scripts
+ADD /etc/ssl/localcerts/* /etc/ssl/localcerts/
 
 ADD config/* /opt/unrealircd/
 
