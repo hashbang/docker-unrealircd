@@ -31,6 +31,7 @@ ADD config/* /opt/unrealircd/
 ADD run.sh /tmp/run.sh
 
 EXPOSE 6697
+EXPOSE 7000
 
 # Default command to run on boot
 CMD ["/tmp/run.sh"]
