@@ -2,7 +2,7 @@ FROM debian:wheezy
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential curl && \
+    apt-get install -y build-essential curl libssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
