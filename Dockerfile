@@ -24,7 +24,7 @@ RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && 
     make
 
 # Get these certs here in advance using deployment scripts
-ADD /etc/ssl/localcerts/* /etc/ssl/localcerts/
+ADD certs/* /etc/ssl/localcerts/
 
 ADD config/* /opt/unrealircd/
 
