@@ -10,7 +10,7 @@ if [ -z "$HOSTNAME" ]; then
   exit 1
 fi
 
-sed -i "s/_NUMERIC_/$TOKEN/" /opt/unrealircd/unrealircd.conf
+sed -i "s/_NUMERIC_/$NUMERIC/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_HOSTNAME_/$HOSTNAME/" /opt/unrealircd/unrealircd.conf
 
 /opt/unrealircd/src/ircd
