@@ -13,6 +13,10 @@ if [ -z "$LINK1_HOST" ]; then
   echo "Missing \$LINK1_HOST"
   exit 1
 fi
+if [ -z "$SERVICES_HOST" ]; then
+  echo "Missing \$SERVICES_HOST"
+  exit 1
+fi
 if [ -z "$LINK1_PASSWORD_RECEIVE" ]; then
   echo "Missing \$LINK1_PASSWORD_RECEIVE"
   exit 1
@@ -35,6 +39,7 @@ sed -i "s/_HOSTNAME_/$HOSTNAME/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_LINK1_HOST_/$LINK1_HOST/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_LINK1_PASSWORD_CONNECT_/$LINK1_PASSWORD_CONNECT/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_LINK1_PASSWORD_RECEIVE_/$LINK1_PASSWORD_RECEIVE/" /opt/unrealircd/unrealircd.conf
+sed -i "s/_SERVICES_HOST_/$SERVICES_HOST/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_SERVICES_PASSWORD_CONNECT_/$SERVICES_PASSWORD_CONNECT/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_SERVICES_PASSWORD_RECEIVE_/$SERVICES_PASSWORD_RECEIVE/" /opt/unrealircd/unrealircd.conf
 
