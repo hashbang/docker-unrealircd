@@ -23,9 +23,6 @@ RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && 
       --enable-dynamic-linking && \
     make
 
-# Get these certs here in advance using deployment scripts
-ADD certs/* /etc/ssl/localcerts/
-
 ADD config/* /opt/unrealircd/
 
 ADD run.sh /tmp/run.sh

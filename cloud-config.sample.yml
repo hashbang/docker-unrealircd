@@ -1,0 +1,71 @@
+coreos:
+  etcd:
+    discovery: https://discovery.etcd.io/643ac6f8e26870b37fh387h8h282h378
+    addr: $private_ipv4:4001
+    peer-addr: $private_ipv4:7001
+  fleet:
+    public-ip: $private_ipv4
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+    - name: docker-redis.service
+      command: start
+      content: |
+        [Unit]
+        Description=#! IRC Server - San Francisco
+        Author=lrvick - lance@lrvick.net
+        After=docker.service
+
+        [Service]
+        Restart=always
+        ExecStart=/usr/bin/docker run \
+          -v /etc/ssl/localcerts:/etc/ssl/localcerts \
+          --env-file /application.env \
+          -p 6697:6697 \
+          --rm \
+          --name="ircd" \
+          hashbangsh/unrealircd
+        ExecStop=/usr/bin/docker stop ircd
+  write_files:
+    - path: /application.env
+      permissions: 0644
+      owner: core
+      content: |
+        NUMERIC=1
+        HOSTNAME=sfo1.irc.hashbang.sh
+        LINK1_NAME=lon1.irc.hashbang.sh
+        LINK1_HOST=lon1.irc.hashbang.sh
+        LINK1_PASSWORD_CONNECT=kjhdslkjhdfkljrandomstringheresdfdfsd
+        LINK1_PASSWORD_RECEIVE=kjhdslkjhdfkljrandomstringheresdfdfsd
+        SERVICES_HOST=services.irc.hashbang.sh
+        SERVICES_PASSWORD_CONNECT=dfsfdanotehrrandomstringheresdfsdf
+        SERVICES_PASSWORD_RECEIVE=dfsfdanotehrrandomstringheresdfsdf
+    - path: /etc/ssl/localcerts/server.crt
+      permissions: 0644
+      owner: root
+      content: |
+        -----BEGIN CERTIFICATE-----
+        !!!  cert content here !!!
+        -----END CERTIFICATE-----
+    - path: /etc/ssl/localcerts/server.key
+      permissions: 0644
+      owner: root
+      content: |
+        -----BEGIN PRIVATE KEY-----
+        !!!  cert content here !!!
+        -----END PRIVATE KEY-----
+    - path: /etc/ssl/localcerts/server-bundle.crt
+      permissions: 0644
+      owner: root
+      content: |
+        -----BEGIN CERTIFICATE-----
+        !!!  cert content here !!!
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        !!!  cert content here !!!
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        !!!  cert content here !!!
+        -----END CERTIFICATE-----
