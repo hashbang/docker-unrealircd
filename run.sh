@@ -40,7 +40,7 @@ fi
 
 sed -i "s/_NUMERIC_/$NUMERIC/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_HOSTNAME_/$HOSTNAME/" /opt/unrealircd/unrealircd.conf
-sed -i "s/_LINK1_NAME_/$LINK1_HOST/" /opt/unrealircd/unrealircd.conf
+sed -i "s/_LINK1_NAME_/$LINK1_NAME/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_LINK1_HOST_/$LINK1_HOST/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_LINK1_PASSWORD_CONNECT_/$LINK1_PASSWORD_CONNECT/" /opt/unrealircd/unrealircd.conf
 sed -i "s/_LINK1_PASSWORD_RECEIVE_/$LINK1_PASSWORD_RECEIVE/" /opt/unrealircd/unrealircd.conf
