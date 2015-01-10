@@ -25,52 +25,10 @@ coreos:
       [Service]
       Restart=always
       ExecStart=/usr/bin/docker run \
-        -v /etc/ssl/localcerts:/etc/ssl/localcerts \
-        --env-file /application.env \
+        -v /home/core/unrealircd/:/etc/unrealircd/ \
         -p 6697:6697 \
         -p 7000:7000 \
         --rm \
         --name="ircd" \
         hashbangsh/unrealircd
       ExecStop=/usr/bin/docker stop ircd
-write_files:
-- path: /application.env
-  permissions: 420
-  owner: core
-  content: |
-    NUMERIC=1
-    HOSTNAME=host1.irc.domain.com
-    LINK1_NAME=host2.irc.domain.com
-    LINK1_HOST=host2.irc.domain.com
-    LINK1_PASSWORD_CONNECT=SOME_PASS_HERE
-    LINK1_PASSWORD_RECEIVE=SOME_PASS_HERE
-    SERVICES_HOST=services.irc.domain.com
-    SERVICES_PASSWORD_CONNECT=ANOTHER_PASS_HERE
-    SERVICES_PASSWORD_RECEIVE=ANOTHER_PASS_HERE
-- path: /etc/ssl/localcerts/server.crt
-  permissions: 420
-  owner: root
-  content: |
-    -----BEGIN CERTIFICATE-----
-    !!! CERT DATA HERE !!!
-    -----END CERTIFICATE-----
-- path: /etc/ssl/localcerts/server.key
-  permissions: 420
-  owner: root
-  content: |
-    -----BEGIN PRIVATE KEY-----
-    !!! CERT DATA HERE !!!
-    -----END PRIVATE KEY-----
-- path: /etc/ssl/localcerts/server-bundle.crt
-  permissions: 420
-  owner: root
-  content: |
-    -----BEGIN CERTIFICATE-----
-    !!! CERT DATA HERE !!!
-    -----END CERTIFICATE-----
-    -----BEGIN CERTIFICATE-----
-    !!! CERT DATA HERE !!!
-    -----END CERTIFICATE-----
-    -----BEGIN CERTIFICATE-----
-    !!! CERT DATA HERE !!!
-    -----END CERTIFICATE-----

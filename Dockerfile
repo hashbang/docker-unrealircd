@@ -7,28 +7,26 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && \
-    mv Unreal3.2.10.4 /opt/unrealircd && \
-    cd /opt/unrealircd && \
+    cd Unreal3.2.10.4 && \
     ./configure \
       --enable-ssl=/etc/ssl/localcerts/ \
       --with-showlistmodes \
       --with-listen=5 \
-      --with-dpath=/opt/unrealircd \
-      --with-spath=/opt/unrealircd/src/ircd \
+      --with-dpath=/etc/unrealircd/ \
+      --with-spath=/usr/bin/unrealircd \
       --with-nick-history=2000 \
       --with-sendq=3000000 \
       --with-bufferpool=18 \
       --with-permissions=0600 \
       --with-fd-setsize=1024 \
       --enable-dynamic-linking && \
-    make
-
-ADD config/* /opt/unrealircd/
-
-ADD run.sh /tmp/run.sh
+    make && \
+    make install && \
+    mkdir -p /usr/lib64/unrealircd/modules && \
+    mv /etc/unrealircd/modules/* /usr/lib64/unrealircd/modules/ && \
+    rm -rf Unreal3.2.10.4
 
 EXPOSE 6697
 EXPOSE 7000
 
-# Default command to run on boot
-CMD ["/tmp/run.sh"]
+CMD ["/usr/bin/unrealircd","-F"]
