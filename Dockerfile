@@ -1,13 +1,17 @@
-FROM debian:wheezy
+FROM debian:stretch
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential curl libssl-dev && \
+    apt-get install -y build-essential wget libssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && \
-    cd Unreal3.2.10.4 && \
+RUN gpg --keyserver pgp.mit.edu --recv-keys 0xA7A21B0A108FF4A9 && \
+    wget https://www.unrealircd.org/unrealircd4/unrealircd-4.0.12.1.tar.gz.asc && \
+    wget https://www.unrealircd.org/unrealircd4/unrealircd-4.0.12.1.tar.gz && \
+    gpg --verify unrealircd-4.0.12.1.tar.gz.asc unrealircd-4.0.12.1.tar.gz && \
+    tar xfv unrealircd-4.0.12.1.tar.gz && \
+    cd unrealircd-4.0.12.1 && \
     ./configure \
       --enable-ssl=/etc/ssl/localcerts/ \
       --with-showlistmodes \
@@ -24,7 +28,8 @@ RUN curl https://www.unrealircd.org/downloads/Unreal3.2.10.4.tar.gz | tar xz && 
     make install && \
     mkdir -p /usr/lib64/unrealircd/modules && \
     mv /etc/unrealircd/modules/* /usr/lib64/unrealircd/modules/ && \
-    rm -rf Unreal3.2.10.4
+    rm -rf unrealircd-4.0.12.1*
+
 
 EXPOSE 6697
 EXPOSE 7000
