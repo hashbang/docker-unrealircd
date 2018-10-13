@@ -1,6 +1,6 @@
 #
 BASEPATH="/usr/lib64/unrealircd"
-BINDIR="/usr/bin"
+BINDIR="/usr/lib64/unrealircd/bin"
 DATADIR="/usr/lib64/unrealircd/data"
 CONFDIR="/usr/lib64/unrealircd/conf"
 MODULESDIR="/usr/lib64/unrealircd/modules"
