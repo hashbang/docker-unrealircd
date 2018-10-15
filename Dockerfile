@@ -22,6 +22,7 @@ RUN chown -R unrealirc:unrealirc /usr/lib64/unrealircd
 
 EXPOSE 6697
 EXPOSE 7000
+EXPOSE 6800
 WORKDIR /
 USER unrealirc
 
