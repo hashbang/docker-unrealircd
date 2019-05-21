@@ -8,10 +8,10 @@ RUN apt-get update && \
     apt-get install -y build-essential git wget libssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN git clone https://github.com/unrealircd/unrealircd.git
+ADD d11b3228e67b9d8b0684406666209343fece98c9.tar.gz .
+RUN mv unrealircd-* unrealircd
 WORKDIR /unrealircd
-RUN git checkout d11b3228e67b9d8b0684406666209343fece98c9
-COPY config.settings /unrealircd/config.settings
+COPY config.settings config.settings
 RUN ./Config -quick && \
     make && \
     make install && \
