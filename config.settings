@@ -1,22 +1,26 @@
-#
-BASEPATH="/usr"
-BINDIR="/usr/bin"
-DATADIR="/var/spool/unrealircd/"
-CONFDIR="/etc/unrealircd"
-MODULESDIR="/usr/lib/x86_64-linux-gnu/unrealircd/modules"
-LOGDIR="/var/log/unrealircd/"
-CACHEDIR="/var/cache/unrealircd/"
-DOCDIR="/usr/share/doc/unrealircd/"
-TMPDIR="/run/unrealircd"
-LIBDIR="/usr/lib/x86_64-linux-gnu/"
+# Directories used at runtime for UnrealIRCd
+BASEPATH="/home/unrealircd/unrealircd"
+BINDIR="/home/unrealircd/unrealircd/bin"
+DATADIR="/home/unrealircd/unrealircd/data"
+CONFDIR="/home/unrealircd/unrealircd/conf"
+MODULESDIR="/home/unrealircd/unrealircd/modules"
+LOGDIR="/home/unrealircd/unrealircd/logs"
+CACHEDIR="/home/unrealircd/unrealircd/cache"
+DOCDIR="/home/unrealircd/unrealircd/doc"
+TMPDIR="/home/unrealircd/unrealircd/tmp"
+LIBDIR="/home/unrealircd/unrealircd/lib"
+
+# Configuration for UnrealIRCd
 PREFIXAQ="1"
 MAXSENDQLENGTH="3000000"
-MAXCONNECTIONS="1024"
+MAXCONNECTIONS_REQUEST="auto"
 NICKNAMEHISTORYLENGTH="2000"
+
+# Build and install instructions
 DEFPERM="0600"
-SSLDIR="/etc/ssl"
-REMOTEINC="0"
-CURLDIR="/usr"
+SSLDIR="" # autodetect
+REMOTEINC="1"
+CURLDIR="/usr" # use system curl
 SHOWLISTMODES="1"
 TOPICNICKISNUH=""
 SHUNNOTICES=""
@@ -25,5 +29,5 @@ DISABLEUSERMOD=""
 OPEROVERRIDEVERIFY=""
 DISABLEEXTBANSTACKING=""
 GENCERTIFICATE="0"
-EXTRAPARA="--with-system-pcre2 --with-system-tre"
+EXTRAPARA="--with-system-pcre2 --with-system-tre --with-system-cares"
 ADVANCED=""
